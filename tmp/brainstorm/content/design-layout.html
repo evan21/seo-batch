@@ -1,0 +1,136 @@
+<h2>方案 A 详细设计 — 整体布局</h2>
+<p class="subtitle">批量 SEO 编辑器主界面</p>
+
+<div class="section">
+  <div class="mockup" style="margin-top: 1rem;">
+    <div class="mockup-header">批量 SEO 编辑器 — 产品 SEO 批量修改</div>
+    <div class="mockup-body" style="padding: 1rem;">
+      
+      <!-- 顶部操作栏 -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e0e0e0;">
+        <div style="display: flex; gap: 1rem; align-items: center;">
+          <span style="font-size: 0.85rem; color: #555;">共 <strong>128</strong> 个产品</span>
+          <span style="font-size: 0.85rem; color: #555;">已修改 <strong style="color: #2c6ecb;">5</strong> 项</span>
+          <div class="mock-input" style="width: 200px; padding: 0.3rem 0.6rem;">搜索产品...</div>
+        </div>
+        <div style="display: flex; gap: 0.5rem;">
+          <div class="mock-button" style="background: #2c6ecb; color: white;">💾 保存全部修改</div>
+        </div>
+      </div>
+
+      <!-- 表头 -->
+      <div style="display: grid; grid-template-columns: 180px 1fr 1fr 140px 220px; gap: 0.5rem; padding: 0.5rem; background: #f5f5f5; font-weight: 600; font-size: 0.8rem; border-radius: 4px;">
+        <div>产品</div>
+        <div>Meta Title <span style="font-weight: 400; color: #888;">(≤60)</span></div>
+        <div>Meta Description <span style="font-weight: 400; color: #888;">(≤160)</span></div>
+        <div>URL Handle</div>
+        <div>搜索引擎预览</div>
+      </div>
+
+      <!-- 数据行 1 -->
+      <div style="display: grid; grid-template-columns: 180px 1fr 1fr 140px 220px; gap: 0.5rem; padding: 0.75rem 0.5rem; border-bottom: 1px solid #eee; align-items: start;">
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <div style="width: 40px; height: 40px; background: #ddd; border-radius: 4px; flex-shrink: 0;"></div>
+          <div>
+            <div style="font-weight: 500; font-size: 0.85rem;">Classic T-Shirt</div>
+            <div style="font-size: 0.75rem; color: #888;">SKU: TS-001</div>
+          </div>
+        </div>
+        <div>
+          <input class="mock-input" value="Classic T-Shirt | Evan Store" style="width: 100%; padding: 0.3rem 0.5rem; font-size: 0.8rem;">
+          <div style="font-size: 0.7rem; margin-top: 2px; color: #2c6ecb;">28 chars ✓</div>
+        </div>
+        <div>
+          <input class="mock-input" value="Shop our premium Classic T-Shirt - comfortable, durable, and perfect for everyday wear." style="width: 100%; padding: 0.3rem 0.5rem; font-size: 0.8rem;">
+          <div style="font-size: 0.7rem; margin-top: 2px; color: #2c6ecb;">95 chars ✓</div>
+        </div>
+        <div>
+          <input class="mock-input" value="classic-tshirt" style="width: 100%; padding: 0.3rem 0.5rem; font-size: 0.8rem;">
+        </div>
+        <div style="background: #f9f9f9; border-radius: 4px; padding: 0.4rem;">
+          <div style="color: #1a0dab; font-size: 0.8rem; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Classic T-Shirt | Evan Store</div>
+          <div style="color: #006621; font-size: 0.7rem;">evan-store.com/...classic-tshirt</div>
+          <div style="color: #444; font-size: 0.7rem; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">Shop our premium Classic T-Shirt...</div>
+        </div>
+      </div>
+
+      <!-- 数据行 2 - 显示长度警告 -->
+      <div style="display: grid; grid-template-columns: 180px 1fr 1fr 140px 220px; gap: 0.5rem; padding: 0.75rem 0.5rem; border-bottom: 1px solid #eee; align-items: start;">
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <div style="width: 40px; height: 40px; background: #e8c8c8; border-radius: 4px; flex-shrink: 0;"></div>
+          <div>
+            <div style="font-weight: 500; font-size: 0.85rem;">Premium Hoodie - Limited Edition - 2024 Collection - Warm & Cozy</div>
+            <div style="font-size: 0.75rem; color: #888;">SKU: HD-002</div>
+          </div>
+        </div>
+        <div>
+          <input class="mock-input" value="Premium Hoodie - Limited Edition - 2024 Collection - Warm & Cozy | Evan Store" style="width: 100%; padding: 0.3rem 0.5rem; font-size: 0.8rem; border-color: #e57373;">
+          <div style="font-size: 0.7rem; margin-top: 2px; color: #e57373;">72 chars ⚠️ 超过建议值 (60)</div>
+        </div>
+        <div>
+          <input class="mock-input" value="Buy the Premium Hoodie - Limited Edition 2024. This warm and cozy hoodie is perfect for cold weather. Made with 100% organic cotton. Free shipping on orders over $50. Shop now and save!" style="width: 100%; padding: 0.3rem 0.5rem; font-size: 0.8rem; border-color: #e57373;">
+          <div style="font-size: 0.7rem; margin-top: 2px; color: #e57373;">198 chars ⚠️ 超过建议值 (160)</div>
+        </div>
+        <div>
+          <input class="mock-input" value="premium-hoodie-2024" style="width: 100%; padding: 0.3rem 0.5rem; font-size: 0.8rem;">
+        </div>
+        <div style="background: #f9f9f9; border-radius: 4px; padding: 0.4rem;">
+          <div style="color: #1a0dab; font-size: 0.8rem; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Premium Hoodie - Limited Ed...</div>
+          <div style="color: #006621; font-size: 0.7rem;">evan-store.com/...premium-hoodie-2024</div>
+          <div style="color: #444; font-size: 0.7rem; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">Buy the Premium Hoodie - Limited...</div>
+        </div>
+      </div>
+
+      <!-- 数据行 3 - 空状态 -->
+      <div style="display: grid; grid-template-columns: 180px 1fr 1fr 140px 220px; gap: 0.5rem; padding: 0.75rem 0.5rem; border-bottom: 1px solid #eee; align-items: start;">
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <div style="width: 40px; height: 40px; background: #ddd; border-radius: 4px; flex-shrink: 0;"></div>
+          <div>
+            <div style="font-weight: 500; font-size: 0.85rem;">Denim Jacket</div>
+            <div style="font-size: 0.75rem; color: #888;">SKU: DJ-003</div>
+          </div>
+        </div>
+        <div>
+          <input class="mock-input" placeholder="未设置 Meta Title" style="width: 100%; padding: 0.3rem 0.5rem; font-size: 0.8rem; color: #aaa;">
+          <div style="font-size: 0.7rem; margin-top: 2px; color: #ff9800;">⚠️ 未设置</div>
+        </div>
+        <div>
+          <input class="mock-input" placeholder="未设置 Meta Description" style="width: 100%; padding: 0.3rem 0.5rem; font-size: 0.8rem; color: #aaa;">
+          <div style="font-size: 0.7rem; margin-top: 2px; color: #ff9800;">⚠️ 未设置</div>
+        </div>
+        <div>
+          <input class="mock-input" value="denim-jacket" style="width: 100%; padding: 0.3rem 0.5rem; font-size: 0.8rem;">
+        </div>
+        <div style="background: #f9f9f9; border-radius: 4px; padding: 0.4rem;">
+          <div style="color: #aaa; font-size: 0.8rem; font-style: italic;">未设置 SEO，保存后将自动生成预览</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="section" style="margin-top: 1.5rem;">
+  <h3>核心设计要点</h3>
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 0.5rem;">
+    <div style="background: #f0f7ff; padding: 0.75rem; border-radius: 6px;">
+      <strong>📊 表格列</strong>
+      <ul style="margin-top: 0.3rem; font-size: 0.85rem;">
+        <li>产品（图片 + 标题 + SKU）</li>
+        <li>Meta Title（可编辑 + 字符计数）</li>
+        <li>Meta Description（可编辑 + 字符计数）</li>
+        <li>URL Handle（可编辑）</li>
+        <li>Google 搜索引擎预览</li>
+      </ul>
+    </div>
+    <div style="background: #f0fff4; padding: 0.75rem; border-radius: 6px;">
+      <strong>⚡ 交互特性</strong>
+      <ul style="margin-top: 0.3rem; font-size: 0.85rem;">
+        <li>编辑后自动标记为"已修改"</li>
+        <li>修改计数显示在顶部</li>
+        <li>一键保存全部（GraphQL 批量）</li>
+        <li>保存进度条 + 结果提示</li>
+      </ul>
+    </div>
+  </div>
+</div>

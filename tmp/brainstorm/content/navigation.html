@@ -1,0 +1,61 @@
+<h2>导航集成 & 界面状态</h2>
+<p class="subtitle">如何将 SEO 编辑器集成到现有 App 中</p>
+
+<div class="section">
+  <h3>🗺️ 导航集成</h3>
+  <div class="mockup" style="margin-top: 0.5rem;">
+    <div class="mockup-body" style="padding: 1rem;">
+      <pre style="background: #f5f5f5; padding: 0.75rem; border-radius: 6px; font-size: 0.85rem;">
+&lt;s-app-nav&gt;
+  &lt;s-link href="/app"&gt;Home&lt;/s-link&gt;
+  &lt;s-link href="/app/additional"&gt;Additional page&lt;/s-link&gt;
+  &lt;s-link href="/app/seo-bulk"&gt;🔍 SEO 批量编辑&lt;/s-link&gt;  &lt;!-- 新增 --&gt;
+&lt;/s-app-nav&gt;</pre>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="margin-top: 1.5rem;">
+  <h3>📱 界面状态矩阵</h3>
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 0.5rem;">
+    <div style="background: #f5f5f5; padding: 0.75rem; border-radius: 6px;">
+      <strong>⏳ Loading 状态</strong>
+      <div style="font-size: 0.8rem; margin-top: 0.3rem;">
+        首次加载时显示 Polaris Skeleton（骨架屏），
+        告知用户"正在加载产品数据..."
+      </div>
+    </div>
+    <div style="background: #f5f5f5; padding: 0.75rem; border-radius: 6px;">
+      <strong>📭 空状态</strong>
+      <div style="font-size: 0.8rem; margin-top: 0.3rem;">
+        商店没有产品时显示空状态提示：
+        "暂无产品，请先在 Shopify 后台创建产品"
+      </div>
+    </div>
+    <div style="background: #f5f5f5; padding: 0.75rem; border-radius: 6px;">
+      <strong>✅ 保存成功</strong>
+      <div style="font-size: 0.8rem; margin-top: 0.3rem;">
+        使用 shopify.toast.show() 显示成功通知：
+        "已成功更新 5 个产品的 SEO 信息"
+      </div>
+    </div>
+    <div style="background: #f5f5f5; padding: 0.75rem; border-radius: 6px;">
+      <strong>❌ 保存失败</strong>
+      <div style="font-size: 0.8rem; margin-top: 0.3rem;">
+        汇总失败信息，显示 "3 个产品保存失败"，
+        并提供 "重试失败项" 按钮
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="margin-top: 1.5rem;">
+  <h3>📄 文件清单</h3>
+  <div style="background: #f0f7ff; padding: 0.75rem; border-radius: 6px; font-size: 0.85rem;">
+    <table style="width: 100%; border-collapse: collapse;">
+      <tr><td style="padding: 0.3rem 0;"><code>app/routes/app.seo-bulk.tsx</code></td><td style="padding: 0.3rem 0;">批量 SEO 编辑器（ loader + action + UI）</td></tr>
+      <tr><td style="padding: 0.3rem 0;"><code>app/routes/app.tsx</code></td><td style="padding: 0.3rem 0;">导航新增 "SEO 批量编辑" 链接</td></tr>
+      <tr><td style="padding: 0.3rem 0;"><code>shopify.app.toml</code></td><td style="padding: 0.3rem 0;">检查 scopes 是否需要新增（write_products 已有）</td></tr>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,5 @@
+# shopify插件开发
+
+商店访问地址：https://evan-test-rzqcz5rt.myshopify.com/?_bt=eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaVZsZG1GdUxYUmxjM1F0Y25weFkzbzFjblF1YlhsemFHOXdhV1o1TG1OdmJRWTZCa1ZVIiwiZXhwIjoiMjAyNi0wNy0wNFQxMDo0ODo1My4zOTRaIiwicHVyIjoicGVybWFuZW50X3Bhc3N3b3JkX2J5cGFzcyJ9fQ%3D%3D--a323bff0282cc5c33d8a43d4d71f49ef605d7b04&_cd=a98a5da4b9d657a9426ffb6fe0e9e434b4278a5920653afaff5d1b718cbe6f0b&_uid=86456697039&preview_theme_id=136121188559&preview_token=oclog0g65u413psljbohp5jj82f9z6s0
+
+https://evan-test-rzqcz5rt.myshopify.com/

@@ -1,0 +1,92 @@
+<h2>数据流与 API 设计</h2>
+<p class="subtitle">数据如何从 Shopify 加载、编辑、保存</p>
+
+<div class="section">
+  <h3>📥 加载流程</h3>
+  <div class="mockup" style="margin-top: 0.5rem;">
+    <div class="mockup-body" style="padding: 1rem;">
+      <pre style="background: #f5f5f5; padding: 1rem; border-radius: 6px; font-size: 0.8rem; overflow-x: auto;">
+// 使用 Shopify Admin GraphQL API 一次加载所有产品及其 SEO 数据
+query LoadProducts($first: Int!) {
+  products(first: $first, sortKey: TITLE) {
+    nodes {
+      id
+      title
+      handle
+      seo {
+        title
+        description
+      }
+      featuredImage { url }
+    }
+    pageInfo { hasNextPage endCursor }
+  }
+}</pre>
+      <div style="margin-top: 0.5rem; font-size: 0.85rem;">
+        <strong>说明：</strong>首次加载最多 250 个产品，如果超过 250 个则进行分页。
+        SEO 数据直接从 <code>seo { title, description }</code> 字段获取。
+        表格编辑都在前端内存中完成，不触发额外 API 请求。
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="margin-top: 1.5rem;">
+  <h3>💾 保存流程</h3>
+  <div class="mockup" style="margin-top: 0.5rem;">
+    <div class="mockup-body" style="padding: 1rem;">
+      <pre style="background: #f5f5f5; padding: 1rem; border-radius: 6px; font-size: 0.8rem; overflow-x: auto;">
+// 批量保存 — 一次性提交所有修改
+mutation BulkUpdateSEO($input: ProductUpdateInput!) {
+  productUpdate(product: $input) {
+    product { id seo { title description } }
+    userErrors { field message }
+  }
+}
+
+// 所有修改逐条发送，但由前端统一控制进度
+// 显示 "正在保存 (3/5)..." 的进度条</pre>
+      <div style="margin-top: 0.5rem; font-size: 0.85rem;">
+        <strong>说明：</strong>点击"保存全部修改"后，逐条调用 <code>productUpdate</code>，
+        前端显示保存进度（如 3/5 完成）。成功/失败的结果汇总后显示 toast 通知。
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="margin-top: 1.5rem;">
+  <h3>⚠️ 错误处理</h3>
+  <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-top: 0.5rem;">
+    <div style="background: #fff8e1; padding: 0.75rem; border-radius: 6px;">
+      <strong>🟡 字段超长</strong>
+      <div style="font-size: 0.8rem; margin-top: 0.3rem;">
+        实时显示红色警告 + 字符计数，但允许保存（Shopify 本身也会截断）
+      </div>
+    </div>
+    <div style="background: #fce4ec; padding: 0.75rem; border-radius: 6px;">
+      <strong>🔴 保存失败</strong>
+      <div style="font-size: 0.8rem; margin-top: 0.3rem;">
+        逐条报告哪些产品保存成功/失败，失败的可单独重试
+      </div>
+    </div>
+    <div style="background: #e8f5e9; padding: 0.75rem; border-radius: 6px;">
+      <strong>🟢 Handle 冲突</strong>
+      <div style="font-size: 0.8rem; margin-top: 0.3rem;">
+        修改 Handle 时检测重复，保存前校验，实时提示
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="margin-top: 1.5rem;">
+  <h3>🔧 新增路由结构</h3>
+  <div style="background: #f5f5f5; padding: 0.75rem; border-radius: 6px; font-size: 0.85rem;">
+    <code>app/routes/app.seo-bulk.tsx</code> — 批量 SEO 编辑器主页面（loader + action）<br>
+    <code>app/routes/app.seo-bulk.tsx</code> 包含：
+    <ul style="margin-top: 0.3rem;">
+      <li><strong>loader</strong> — 查询所有产品的 SEO 数据</li>
+      <li><strong>action</strong> — 接收前端提交的批量修改并逐条执行 productUpdate</li>
+      <li>在 <code>app/routes/app.tsx</code> 导航中添加 "SEO 批量编辑" 链接</li>
+    </ul>
+  </div>
+</div>
